@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useRecoilState } from 'recoil';
 import { cartItemState, cartState } from '@/recoil/atom';
+import LoginBtn from './LoginBtn';
 
 const Navbar = ({ products }: any) => {
     // const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
@@ -153,15 +154,8 @@ const Navbar = ({ products }: any) => {
 
                 {/* right */}
                 <div className="flex items-center space-x-4">
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className='relative'
-                    // Implement login functionality
-                    >
-                        <CircleUserRound className='h-6 w-6 text-gray-600' />
-                    </Button>
-
+                    
+                    <LoginBtn />
                     <Button
                         variant="outline"
                         size="icon"

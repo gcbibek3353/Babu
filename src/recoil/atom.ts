@@ -22,7 +22,6 @@ export const cartState = atom<boolean>({
   default: false,
 });
 
-
 export const cartItemState = atom<any[]>({
   key: "cartItemState",
   default: [],

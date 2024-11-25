@@ -4,6 +4,7 @@ import "./globals.css";
 import Provieder from "./Provieder";
 import Cart from "@/components/Cart";
 import Navbar from "@/components/Navbar";
+import { getAllProducts } from "@/actions/product";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,25 +22,33 @@ export const metadata: Metadata = {
   description: "Babu is a quick commerce platform that is build to deliver your needs within 10 minutes",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const res = await getAllProducts();
+  if(!res.success || !res.products?.length) return <html lang="en">
+  <body
+    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  >
+   No Products found
+  </body>
+</html>
 
   // dummy data for products
-  const products = [
-    {
-      name : "apple",
-      category : "fruit",
-      price : 200
-    },
-    {
-      name : "potato",
-      category : "vegetable",
-      price : 400
-    },
-  ]
+  // const products = [
+  //   {
+  //     name : "apple",
+  //     category : "fruit",
+  //     price : 200
+  //   },
+  //   {
+  //     name : "potato",
+  //     category : "vegetable",
+  //     price : 400
+  //   },
+  // ]
   
   return (
     <html lang="en">
@@ -47,7 +56,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provieder>
-          <Navbar products={products} />
+          <Navbar products={res.products} />
           <Cart />
           {children}
         </Provieder>

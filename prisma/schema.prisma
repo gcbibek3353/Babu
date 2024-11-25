@@ -23,6 +23,8 @@ model Product {
   inStock     Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  time  Int @default(8)
+  quantity  String @default("1")
 
   carts      Cart[]
   favourates Favourate[]
@@ -41,6 +43,8 @@ model Cart {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+   @@unique([userId, productId])
 }
 
 model Favourate {
