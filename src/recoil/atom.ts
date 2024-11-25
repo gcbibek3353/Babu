@@ -27,3 +27,8 @@ export const cartItemState = atom<any[]>({
   default: [],
   // effects_UNSTABLE: [localStorageEffect("cartItemState")], // Use localStorageEffect
 });
+
+export const testAtom = atom({
+  key : "testState",
+  default : 0
+})

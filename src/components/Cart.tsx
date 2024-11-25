@@ -1,6 +1,5 @@
 "use client"
-
-import { cartItemState, cartState } from '@/recoil/atom';
+import { cartState } from '@/recoil/atom';
 import {
     Sheet,
     SheetClose,
@@ -18,7 +17,9 @@ import { Label } from './ui/label';
 import Link from 'next/link';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { Separator } from './ui/separator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCartItems } from '@/actions/cart';
+import { useSession } from 'next-auth/react';
 
 
 const initialCartItems = [
@@ -46,10 +47,22 @@ const initialCartItems = [
 ];
 
 const Cart = () => {
-    // const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
-    // const [cartItems, setCartItems] = useRecoilState<any>(cartItemState);
-    const [isCartOpen, setIsCartOpen] = useState(true);
+    const session = useSession();
+    console.log(session);
+    const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
     const [cartItems, setCartItems] = useState<any>(initialCartItems);
+
+    const fetchCartItems = async ()=>{
+      const res = await getCartItems(1);  // Instead of using 1 get the userId of user which is logged in
+      if(!res.success){
+        setCartItems([]);
+        return;
+      }
+      setCartItems(res.cartItems);
+    }
+    useEffect(()=>{
+      fetchCartItems();
+    },[])
 
     const totalItems = cartItems.reduce(
         (sum: any, item: any) => sum + item.quantity,
@@ -74,11 +87,6 @@ const Cart = () => {
       };
 
     return (
-        // <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-        //     <SheetContent className='2-full sm:max-w-lg'>
-
-        //     </SheetContent>
-        // </Sheet>
         <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
         <SheetContent className="w-full sm:max-w-lg">
           <SheetHeader>
@@ -89,7 +97,7 @@ const Cart = () => {
               <div key={item.id} className="flex items-center space-x-4">
                 <div className="relative w-20 h-20 rounded-md overflow-hidden">
                   <img
-                    src={item.imageUrl}
+                    src={item.image}
                     alt={item.name}
                     className="object-cover"
                   />

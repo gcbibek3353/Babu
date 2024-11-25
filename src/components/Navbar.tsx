@@ -4,15 +4,11 @@ import logo from '@/images/logo.jpg'
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, CircleUserRound, Search, ShoppingCart } from 'lucide-react';
-import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { useRecoilState } from 'recoil';
-import { cartItemState, cartState } from '@/recoil/atom';
 import LoginBtn from './LoginBtn';
+import CartBtn from './CartBtn';
 
 const Navbar = ({ products }: any) => {
-    // const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
-    // const [cartItems, setCartItems] = useRecoilState<any>(cartItemState);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<any>([]);
@@ -66,6 +62,7 @@ const Navbar = ({ products }: any) => {
                             className="rounded-full"
                         />
                     </Link>
+                    {/* <span onClick={()=>setTestState(testState + 1)}>{testState}</span> */}
                     <div className="relative group">
                         <Link
                             href="/products"
@@ -156,14 +153,7 @@ const Navbar = ({ products }: any) => {
                 <div className="flex items-center space-x-4">
                     
                     <LoginBtn />
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="relative"
-                    // Implement cart functionality
-                    >
-                        <ShoppingCart className="h-5 w-5 text-gray-600" />
-                    </Button>
+                    <CartBtn />
                 </div>
             </div>
 
