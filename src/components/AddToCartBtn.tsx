@@ -2,13 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 import { Minus, Plus } from "lucide-react";
 import { addToCart, deleteCart, getCartQuantity, updateCart } from "@/actions/cart";
+import { useSession } from "next-auth/react";
 
 
 const AddToCartBtn = ({ productId }: { productId: number }) => {
     const [quantity, setQuantity] = useState(0);
-    const userId = 1; // get this data from the session when nextAuth is implemented
+    const session = useSession();
+    const userId = session.data?.user.id;
+    if(!(session.status === "authenticated")){
+        return <Button onClick={()=>toast.error("You are not logged in")} className="w-full border rounded-md">
+        Add to cart
+    </Button>
+    }
+    // const userId = 1; // get this data from the session when nextAuth is implemented
 
     // useEffect(()=>{
     //     const getCartData = async ()=>{

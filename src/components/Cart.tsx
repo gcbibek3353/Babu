@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/sheet"
 import { useRecoilState } from 'recoil';
 import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
 import Link from 'next/link';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { Separator } from './ui/separator';
@@ -47,22 +45,26 @@ const initialCartItems = [
 ];
 
 const Cart = () => {
-    const session = useSession();
-    console.log(session);
-    const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
-    const [cartItems, setCartItems] = useState<any>(initialCartItems);
+  const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
+  const [cartItems, setCartItems] = useState<any>(initialCartItems);
 
-    const fetchCartItems = async ()=>{
-      const res = await getCartItems(1);  // Instead of using 1 get the userId of user which is logged in
+  const session = useSession();
+  const userId = session.data?.user?.id;
+  // console.log(userId);
+  
+  const fetchCartItems = async ()=>{
+      // console.log(userId);
+      const res = await getCartItems(userId);  // Instead of using 1 get the userId of user which is logged in
       if(!res.success){
         setCartItems([]);
         return;
       }
+      console.log(res.cartItems);
       setCartItems(res.cartItems);
     }
     useEffect(()=>{
-      fetchCartItems();
-    },[])
+      fetchCartItems();   // This should update whenever user adds or removes from cart // i.e dependent on AddToCartBtn.tsx component
+    },[userId])
 
     const totalItems = cartItems.reduce(
         (sum: any, item: any) => sum + item.quantity,

@@ -23,7 +23,7 @@ model Product {
   inStock     Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  time  Int @default(8)
+  time  String @default("8 min")
   quantity  String @default("1")
 
   carts      Cart[]

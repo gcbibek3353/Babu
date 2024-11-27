@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { addToCart } from "@/actions/cart";
-import { Minus, Plus } from "lucide-react";
+import { addToCart, getCartQuantity } from "@/actions/cart";
+import { Minus, Plus,AlarmClock } from "lucide-react";
 import AddToCartBtn from "./AddToCartBtn";
+import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { nextAuthConfig } from "@/lib/nextAuthConfig";
 
 interface ProductDetailsParams {
     id : number
@@ -17,6 +20,32 @@ interface ProductDetailsParams {
 
 const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
 
+    // const session = getServerSession(nextAuthConfig);
+    // console.log(session);
+    
+    // const [quantity, setQuantity] = useState(0);
+
+    // const session = useSession();
+    // const userId = session.data?.user.id;
+    // const productId = product.id;
+
+    // console.log(session);
+    
+    // if(!userId) setQuantity(0);
+
+    //  useEffect(()=>{
+    //         const getCartData = async ()=>{
+    //             const res = await getCartQuantity({userId,productId});
+    //             if(!res){
+    //                 setQuantity(0);
+    //                 return;
+    //             }
+    //             setQuantity(res.quantity);
+    //         }
+    //         getCartData();
+    //     },[quantity])
+
+
     return (
         <div className="border shadow-md p-4 rounded-md flex flex-col gap-3 m-auto max-w-xs sm:max-w-sm md:max-w-md">
             <img
@@ -26,7 +55,7 @@ const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
             />
             <div className="flex flex-col items-start gap-2">
                 <span className="rounded-md bg-slate-100 text-xs px-2 py-1 flex gap-1 items-center">
-                    {product.time}
+                    <AlarmClock className="w-3 h-3" />{product.time} min
                 </span>
                 <h3 className="font-semibold text-lg">{product.name}</h3>
                 <p className="text-sm text-slate-500">{product.quantity}</p>
@@ -34,7 +63,6 @@ const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
                     <span className="font-semibold text-lg">₹{product.price}</span>{" "}
                     <s className="text-xs text-slate-500">₹{product.price}</s>
                 </p>
-
                 <AddToCartBtn productId={product.id} />
             </div>
         </div>

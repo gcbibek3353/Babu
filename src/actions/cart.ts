@@ -116,11 +116,13 @@ export const deleteCart = async (cartDetails: cartDetailsParams) => {
 }
 
 export const getCartItems = async (userId: number) => {
+    // console.log(userId);
     try {
         const cartDetails = await prisma.cart.findMany({
             where: { userId }
         })
-
+        // console.log(cartDetails);
+        
         const populatedCartDetails = await Promise.all(
             cartDetails.map(async (cart) => {
                 const product = await prisma.product.findUnique({

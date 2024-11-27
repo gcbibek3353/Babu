@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "time" SET DEFAULT '8 min',
+ALTER COLUMN "time" SET DATA TYPE TEXT;

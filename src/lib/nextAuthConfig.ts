@@ -38,4 +38,41 @@ export const nextAuthConfig = {
     })
     // ...add more providers here
   ],
+
+  callbacks: {
+    async signIn({ user, account, profile } : any) {
+      // Check if user exists in your database
+      let existingUser = await prisma.user.findUnique({
+        where: { email: user.email },
+      });
+
+      // If not, create a new user
+      if (!existingUser) {
+        existingUser = await prisma.user.create({
+          data: {
+            name: user.name || profile.login,
+            phone : 0,
+            email : user.email,
+            password : "GithubUser",
+            city : "GithubUser",
+            address : "GithubUser"},
+        });
+      }
+      // Attach userId to the token
+      user.id = existingUser.id;
+
+      return true; // Allow sign-in
+    },
+    async session({ session, token } : any) {
+      // Attach the user ID to the session
+      session.user.id = token.id;
+      return session;
+    },
+    async jwt({ token, user } : any) {
+      if (user) {
+        token.id = user.id; // Attach userId from database to the token
+      }
+      return token;
+    },
+  },
 }
