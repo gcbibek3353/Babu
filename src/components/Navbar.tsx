@@ -7,8 +7,14 @@ import { ChevronDown, CircleUserRound, Search, ShoppingCart } from 'lucide-react
 import { Input } from './ui/input';
 import LoginBtn from './LoginBtn';
 import CartBtn from './CartBtn';
+import { useRouter } from 'next/navigation';
+import { Button } from './ui/button';
+import { useSession } from 'next-auth/react';
 
 const Navbar = ({ products }: any) => {
+    const router = useRouter();
+    const session = useSession();
+    // console.log(session);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<any>([]);
@@ -151,8 +157,16 @@ const Navbar = ({ products }: any) => {
 
                 {/* right */}
                 <div className="flex items-center space-x-4">
-                    
+
                     <LoginBtn />
+                    {
+                        session.status == "authenticated" ?
+                            ""
+                            :
+                            <Button onClick={() => router.push('/signup')}>
+                                Sign UP
+                            </Button>
+                    }
                     <CartBtn />
                 </div>
             </div>

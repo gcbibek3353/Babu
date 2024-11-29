@@ -56,7 +56,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provieder>
-          <Navbar products={res.products} />
+          {/* <Navbar products={res.products} /> */}
           <Cart />
           {children}
         </Provieder>
