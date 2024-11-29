@@ -59,7 +59,7 @@ const Cart = () => {
         setCartItems([]);
         return;
       }
-      console.log(res.cartItems);
+      // console.log(res.cartItems);
       setCartItems(res.cartItems);
     }
     useEffect(()=>{

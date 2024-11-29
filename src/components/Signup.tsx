@@ -33,7 +33,7 @@ const Signup = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        console.log("user Details: ", userDetails);
+        // console.log("user Details: ", userDetails);
         const { name, email, password, phone, address, city } = userDetails;
         const phoneNumber = parseInt(phone);
         const added :any= await addUser({

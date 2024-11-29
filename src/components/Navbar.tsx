@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import logo from '@/images/logo.jpg'
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, CircleUserRound, Search, ShoppingCart } from 'lucide-react';
+import { ChevronDown,Search} from 'lucide-react';
 import { Input } from './ui/input';
 import LoginBtn from './LoginBtn';
 import CartBtn from './CartBtn';
@@ -139,7 +139,7 @@ const Navbar = ({ products }: any) => {
                                                         {product.name}
                                                     </p>
                                                     <p className="text-sm text-gray-500">
-                                                        ${product.price.toFixed(2)}
+                                                        ₹{product.price.toFixed(2)}
                                                     </p>
                                                 </div>
                                             </Link>

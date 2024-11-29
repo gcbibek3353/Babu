@@ -8,6 +8,8 @@ interface productDetailsParams{
     imageUrl : string
     category : string
     inStock : number
+    time : string
+    quantity : string
 }
 
 export const getAllProducts = async ()=>{
@@ -90,11 +92,11 @@ export const updateProduct = async (id : number, data : productDetailsParams)=>{
 
 }
 
-export const createProduct = async (productDetails : productDetailsParams)=>{
+export const createProductAction = async (productDetails : productDetailsParams)=>{
     try {
-        const {name ,description, price ,imageUrl,category,inStock} = productDetails;
+        const {name ,description, price ,imageUrl,category,inStock,time,quantity} = productDetails;
         const newProduct = await prisma.product.create({
-            data : {name ,description, price ,imageUrl,category,inStock}
+            data : {name ,description, price ,imageUrl,category,inStock,time,quantity}
         });
         return {
             message : "successfully Added the product",
