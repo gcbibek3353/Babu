@@ -157,7 +157,6 @@ const Navbar = ({ products }: any) => {
 
                 {/* right */}
                 <div className="flex items-center space-x-4">
-
                     <LoginBtn />
                     {
                         session.status == "authenticated" ?

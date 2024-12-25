@@ -1,11 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { addToCart, getCartQuantity } from "@/actions/cart";
-import { Minus, Plus,AlarmClock } from "lucide-react";
+import { AlarmClock } from "lucide-react";
 import AddToCartBtn from "./AddToCartBtn";
-import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { nextAuthConfig } from "@/lib/nextAuthConfig";
 
 interface ProductDetailsParams {
     id : number
@@ -19,32 +13,6 @@ interface ProductDetailsParams {
 }
 
 const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
-
-    // const session = getServerSession(nextAuthConfig);
-    // console.log(session);
-    
-    // const [quantity, setQuantity] = useState(0);
-
-    // const session = useSession();
-    // const userId = session.data?.user.id;
-    // const productId = product.id;
-
-    // console.log(session);
-    
-    // if(!userId) setQuantity(0);
-
-    //  useEffect(()=>{
-    //         const getCartData = async ()=>{
-    //             const res = await getCartQuantity({userId,productId});
-    //             if(!res){
-    //                 setQuantity(0);
-    //                 return;
-    //             }
-    //             setQuantity(res.quantity);
-    //         }
-    //         getCartData();
-    //     },[quantity])
-
 
     return (
         <div className="border shadow-md p-4 rounded-md flex flex-col gap-3 m-auto max-w-xs sm:max-w-sm md:max-w-md">

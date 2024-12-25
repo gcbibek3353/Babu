@@ -62,6 +62,7 @@ const Cart = () => {
       // console.log(res.cartItems);
       setCartItems(res.cartItems);
     }
+    
     useEffect(()=>{
       fetchCartItems();   // This should update whenever user adds or removes from cart // i.e dependent on AddToCartBtn.tsx component
     },[userId])
@@ -86,11 +87,6 @@ const Cart = () => {
             )
             .filter((item: any) => item.quantity > 0)
         );
-
-        
-
-
-
       };
 
     return (

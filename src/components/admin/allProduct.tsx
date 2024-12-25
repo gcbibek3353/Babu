@@ -23,7 +23,6 @@ const allProduct = async () => {
         ))
       }
 
-
 {
   res.products.map(product => (
     <div 
