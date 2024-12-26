@@ -12,6 +12,12 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
     const session = useSession();
     const userId = session.status === "authenticated" ? session.data?.user.id : null;
 
+    if (!userId) {
+        return <Button onClick={() => toast.error("You are not logged in")} className="w-full border rounded-md">
+            Add to cart
+        </Button>
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             if (!userId || !productId) return;

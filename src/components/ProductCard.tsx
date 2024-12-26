@@ -1,5 +1,6 @@
 import { AlarmClock } from "lucide-react";
 import AddToCartBtn from "./AddToCartBtn";
+import Link from "next/link";
 
 interface ProductDetailsParams {
     id : number
@@ -15,7 +16,7 @@ interface ProductDetailsParams {
 const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
 
     return (
-        <div className="border shadow-md p-4 rounded-md flex flex-col gap-3 m-auto max-w-xs sm:max-w-sm md:max-w-md">
+        <Link href={`/products/${product.id}`} className="border shadow-md p-4 rounded-md flex flex-col gap-3 m-auto max-w-xs sm:max-w-sm md:max-w-md">
             <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -33,7 +34,7 @@ const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
                 </p>
                 <AddToCartBtn productId={product.id} />
             </div>
-        </div>
+        </Link>
     );
 
 }
