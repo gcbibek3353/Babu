@@ -5,6 +5,7 @@ import AddToCartBtn from '@/components/AddToCartBtn';
 import { Link, Share } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ProductCard';
+import FavourateBtn from '@/components/FavourateBtn';
 
 const page = async ({ params, }: { params: Promise<{ productId: string }> }) => {
     const productId = (await params).productId;
@@ -19,31 +20,34 @@ const page = async ({ params, }: { params: Promise<{ productId: string }> }) => 
     const allProducts = res3.products;
 
     return (
-        <div>
-            <div className='flex justify-center items-center gap-5'>
-                <div className='w-1/2'>
+        <div className='flex flex-col gap-5 p-5'>
+            <div className='flex justify-evenly items-center gap-5'>
+                <div className='w-1/2 border rounded-md p-5 flex items-center justify-center flex-col gap-5'>
+                    <div className='relative top-10 right-36'>
+                    <FavourateBtn productId={product?.id} />
+                    </div>
                     <div className='p-5 rounded-md flex justify-center items-center'>
-                        <img src={product?.imageUrl as string} alt="productImage" className='rounded-md shadow-xl' />
+                        <img src={product?.imageUrl as string} alt="productImage" className='rounded-md shadow-xl w-72 h-auto' />
                     </div>
                     <div className='w-1/2'>
-                        <h2>₹{product?.price}</h2>
+                        <h2 className='text-2xl font-bold'>₹{product?.price}</h2>
                         <AddToCartBtn productId={product?.id as number} />
                     </div>
                 </div>
 
-                <div>
+                <div className='w-1/2 flex flex-col gap-5 border rounded-md h-full p-5'>
 
-                    <div className='flex gap-5'><h1>{product?.name}</h1>
+                    <div className='flex gap-5'><h1 className='text-4xl font-bold'>{product?.name}</h1>
                         <Button
                             variant="outline"
                             size="icon"
                             className="relative">
-                            <Share />
+                            <Share className='text-4xl font-bold' />
                         </Button>
                     </div>
                     <div>
-                        <p>{product?.description}</p>
-                        <span>Net Quantity : {product?.quantity}</span>
+                        <p className='text-xl'>{product?.description}</p>
+                        <span className='text-xl'>Net Quantity : {product?.quantity}</span>
                     </div>
                 </div>
             </div>
@@ -61,7 +65,7 @@ const page = async ({ params, }: { params: Promise<{ productId: string }> }) => 
                 </div>
                 <div className="p-4">
                     <h2 className="text-lg font-bold text-center md:text-left md:text-2xl mb-4">
-                        You might also like 
+                        You might also like
                     </h2>
                     <div className="flex gap-4 items-center justify-center overflow-hidden">
                         {allProducts.map((product) => (

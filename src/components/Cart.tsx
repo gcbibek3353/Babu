@@ -13,7 +13,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { Button } from './ui/button';
 import Link from 'next/link';
-import { Minus, Plus, Trash2 } from 'lucide-react';
+import { CreditCard, Minus, Plus, Trash2 } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { useEffect, useState } from 'react';
 import { deleteCart, getCartItems, updateCart } from '@/actions/cart';
@@ -59,7 +59,6 @@ const Cart = () => {
         setCartItems([]);
         return;
       }
-      // console.log(res.cartItems);
       setCartItems(res.cartItems);
     }
     
@@ -77,30 +76,14 @@ const Cart = () => {
         0
     );
 
-    // const updateQuantity = (id: number, change: number) => {
-    //     setCartItems((items: any) =>
-    //       items
-    //         .map((item: any) =>
-    //           item.id === id
-    //             ? { ...item, quantity: Math.max(0, item.quantity + change) }
-    //             : item
-    //         )
-    //         .filter((item: any) => item.quantity > 0)
-    //     );
-    //   };
-
-    const cartHandler = async (id :  number,operation : string) =>{
+    const cartHandler = async (id :  number, productId : number, operation : string) =>{
       if(operation == "increment"){
-        console.log(cartItems);
         const newQuantity = cartItems.find((item : any) => item.id === id).quantity + 1;
         const newCartItems = cartItems.map((item : any) => item.id === id ? { ...item, quantity: newQuantity } : item);
-        console.log(newCartItems);
         setCartItems(newCartItems);
-        await updateCart({ quantity: newQuantity, productId: id, userId });
+        await updateCart({ quantity: newQuantity, productId, userId });
       }
       else if(operation == "decrement"){
-        console.log("Decrementing");
-        
         const newQuantity = cartItems.find((item : any) => item.id === id).quantity - 1;
         if(newQuantity == 0){
           const newCartItems = cartItems.filter((item : any) => item.id !== id);
@@ -110,15 +93,13 @@ const Cart = () => {
         else{
           const newCartItems = cartItems.map((item : any) => item.id === id ? { ...item, quantity: newQuantity } : item);
           setCartItems(newCartItems);
-          await updateCart({ quantity: newQuantity, productId: id, userId });
+          await updateCart({ quantity: newQuantity, productId, userId });
         }
       }
       else if(operation == "delete"){
-        console.log("Deleting");
-        
         const newCartItems = cartItems.filter((item : any) => item.id !== id);
         setCartItems(newCartItems);
-        await deleteCart({ quantity: 0, productId: id, userId });
+        await deleteCart({ quantity: 0, productId, userId });
       }
     }
 
@@ -149,7 +130,7 @@ const Cart = () => {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => cartHandler(item.id, "decrement")}
+                      onClick={() => cartHandler(item.id,item.productId, "decrement")}
                     >
                       <Minus className="h-4 w-4" />
                     </Button>
@@ -157,7 +138,7 @@ const Cart = () => {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => cartHandler(item.id, "increment")}
+                      onClick={() => cartHandler(item.id,item.productId, "increment")}
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
@@ -165,7 +146,7 @@ const Cart = () => {
                       variant="ghost"
                       size="icon"
                       className="ml-4 text-red-500"
-                      onClick={() => cartHandler(item.id, "delete")}
+                      onClick={() => cartHandler(item.id,item.productId, "delete")}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -189,7 +170,7 @@ const Cart = () => {
                 setIsCartOpen(false);
               }}
             >
-              Proceed to Checkout
+              <CreditCard /> Pay ₹{totalPrice.toFixed(2)}
             </Button>
           </Link>
         </SheetContent>

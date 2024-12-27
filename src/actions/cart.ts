@@ -130,6 +130,7 @@ export const getCartItems = async (userId: number) => {
                 });
                 return {
                     id: cart.id,
+                    productId: product?.id,
                     name: product?.name,
                     price: product?.price,
                     quantity: cart.quantity,

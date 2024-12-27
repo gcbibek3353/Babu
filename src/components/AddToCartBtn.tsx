@@ -12,12 +12,6 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
     const session = useSession();
     const userId = session.status === "authenticated" ? session.data?.user.id : null;
 
-    if (!userId) {
-        return <Button onClick={() => toast.error("You are not logged in")} className="w-full border rounded-md">
-            Add to cart
-        </Button>
-    }
-
     useEffect(() => {
         const fetchData = async () => {
             if (!userId || !productId) return;
@@ -31,6 +25,7 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
 
         fetchData();
     }, [userId, productId]);
+    
     const cartHandler = async (operation: string, operation2: string) => {
         if (operation == "add") {
             const newQuantity = quantity + 1;
@@ -57,6 +52,7 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
     }
 
     return (
+        userId ?
         <div >
             {
                 (quantity > 0)
@@ -82,6 +78,9 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
                     </Button>
             }
         </div>
+        : (<Button onClick={() => toast.error("You are not logged in")} className="w-full border rounded-md">
+                Add to cart
+            </Button>)
     )
 }
 

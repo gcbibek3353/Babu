@@ -70,12 +70,12 @@ const Navbar = ({ products }: any) => {
                     </Link>
                     {/* <span onClick={()=>setTestState(testState + 1)}>{testState}</span> */}
                     <div className="relative group">
-                        <Link
-                            href="/products"
+                        <div
+                            
                             className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
                         >
                             Categories <ChevronDown className="ml-1 h-4 w-4" />
-                        </Link>
+                        </div>
                         <div className="absolute left-0 mt-2 w-48 z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
                             <div
                                 className="py-1"
