@@ -9,12 +9,12 @@ interface orderDetailsParams {
     address: string
 }
 
-enum status {
-    "processing",
-    "cancelled",
-    "shipped",
-    "delivered"
-  }
+// enum status {
+//     "processing",
+//     "cancelled",
+//     "shipped",
+//     "delivered"
+//   }
 
 export const addOrder = async (orderDetails: orderDetailsParams) => {
     try {
@@ -26,10 +26,10 @@ export const addOrder = async (orderDetails: orderDetailsParams) => {
             message: "Successfully Added the Order",
             addedOrder
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the order",
             success: false,
         }
@@ -44,10 +44,10 @@ export const getOrders = async () => {
             message: "all orders fetched successfully",
             orders
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to get the orders",
             success: false,
         }
@@ -64,10 +64,10 @@ export const getOrderById = async (id: number) => {
             message: "order with given id fetched successfully",
             order
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to get the order",
             success: false,
         }
@@ -75,7 +75,7 @@ export const getOrderById = async (id: number) => {
 }
 
 // don't use any type , use correct type
-export const updateOrderStatus = async (id: number, status: any) => {
+export const updateOrderStatus = async (id: number, status : any) => {
     try {
         const updatedOrder = await prisma.order.update({
             where : {id},
@@ -89,10 +89,10 @@ export const updateOrderStatus = async (id: number, status: any) => {
             updatedOrder
         }
 
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to update order status",
             success: false,
         }

@@ -30,22 +30,22 @@ const AddToCartBtn = ({ productId }: { productId: number }) => {
         if (operation == "add") {
             const newQuantity = quantity + 1;
             setQuantity(newQuantity);
-            const res = await addToCart({ quantity: newQuantity, productId, userId });
+            await addToCart({ quantity: newQuantity, productId, userId });
         }
         if (operation == "update") {
             if (operation2 == "increment") {
                 const newQuantity = quantity + 1;
                 setQuantity(newQuantity);
-                const res = await updateCart({ quantity: newQuantity, productId, userId });
+                await updateCart({ quantity: newQuantity, productId, userId });
             }
             else if (operation2 == "decrement") {
                 const newQuantity = quantity - 1;
                 setQuantity(newQuantity);
                 if (quantity == 1) {
-                    const res = await deleteCart({ quantity: newQuantity, productId, userId })
+                    await deleteCart({ quantity: newQuantity, productId, userId })
                 }
                 else {
-                    const res = await updateCart({ quantity: newQuantity, productId, userId });
+                    await updateCart({ quantity: newQuantity, productId, userId });
                 }
             }
         }

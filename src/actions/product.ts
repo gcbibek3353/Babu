@@ -20,8 +20,8 @@ export const getAllProducts = async ()=>{
             message : "Successfully fetched all the products",
             products
         }
-    } catch (error : any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
             message : "Failed to get all the products",
             success : false,
@@ -42,8 +42,8 @@ export const getProductById = async (id:number)=>{
             message : "Successfully fetched product using given Id",
             product
         }
-    } catch (error : any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
             message : "Failed to get the product",
             success : false,
@@ -61,10 +61,10 @@ export const deleteProduct = async (id : number)=>{
             success : true,
             deletedProduct
         }
-    } catch (error : any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error : error.message,
+            error : error,
             message : "Failed to delete the product",
             success : false,
         }
@@ -82,10 +82,10 @@ export const updateProduct = async (id : number, data : productDetailsParams)=>{
             message : "Product updated successfully",
             updatedProduct
         }
-    }catch (error : any) {
-        console.log(error.message);
+    }catch (error) {
+        console.log(error);
         return {
-            error : error.message,
+            error : error,
             message : "Failed to delete the product",
             success : false,
         }
@@ -105,8 +105,8 @@ export const createProductAction = async (productDetails : productDetailsParams)
             newProduct
         }
         
-    } catch (error : any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
             message : "Failed to add the product",
             success : false,
@@ -126,8 +126,8 @@ export const getProductByCategory = async (category : string)=>{
             message : "Successfully fetched product using given Id",
             products
         }
-    } catch (error : any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
             message : "Failed to get the product",
             success : false,

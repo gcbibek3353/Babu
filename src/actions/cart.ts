@@ -1,6 +1,5 @@
 'use server'
 
-import ProductCard from "@/components/ProductCard";
 import prisma from "@/db";
 
 interface cartDetailsParams {
@@ -24,10 +23,9 @@ export const getCartQuantity = async ({ userId, productId }: { userId: number, p
             }
         }
 
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
         return {
-            error: error.message,
+            error: error,
             message: "Failed to get the quantity",
             success: false,
         }
@@ -44,10 +42,10 @@ export const addToCart = async (cartDetails: cartDetailsParams) => {
             message: "Successfully Added to cart",
             addedCart
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the order",
             success: false,
         }
@@ -75,10 +73,10 @@ export const updateCart = async (cartDetails: cartDetailsParams) => {
                 updatedCart
             }
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the order",
             success: false,
         }
@@ -105,10 +103,10 @@ export const deleteCart = async (cartDetails: cartDetailsParams) => {
                 deletedCart
             }
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the order",
             success: false,
         }
@@ -144,10 +142,10 @@ export const getCartItems = async (userId: number) => {
             message: "All cart Information along with populated product",
             cartItems: populatedCartDetails
         };
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the order",
             success: false,
         }

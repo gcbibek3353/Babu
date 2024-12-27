@@ -27,7 +27,7 @@ const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
                 />
                 <div className="flex flex-col items-start gap-2">
                     <span className="rounded-md bg-slate-100 text-xs px-2 py-1 flex gap-1 items-center">
-                        <AlarmClock className="w-3 h-3" />{product.time} min
+                        <AlarmClock className="w-3 h-3" />{product.time}
                     </span>
                     <h3 className="font-semibold text-lg">{product.name}</h3>
                     <p className="text-sm text-slate-500">{product.quantity}</p>

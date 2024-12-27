@@ -17,7 +17,7 @@ const Navbar = ({ products }: any) => {
     // console.log(session);
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState<any>([]);
+    const [searchResults, setSearchResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
     const [categories, setCategories] = useState<string[]>([]);
     const [placeholder, setPlaceholder] = useState("Search");

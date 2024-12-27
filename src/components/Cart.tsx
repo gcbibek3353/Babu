@@ -2,13 +2,9 @@
 import { cartState } from '@/recoil/atom';
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger,
 } from "@/components/ui/sheet"
 import { useRecoilState } from 'recoil';
 import { Button } from './ui/button';
@@ -18,6 +14,7 @@ import { Separator } from './ui/separator';
 import { useEffect, useState } from 'react';
 import { deleteCart, getCartItems, updateCart } from '@/actions/cart';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 
 const initialCartItems = [
@@ -67,37 +64,37 @@ const Cart = () => {
     },[userId])
 
     const totalItems = cartItems.reduce(
-        (sum: any, item: any) => sum + item.quantity,
+        (sum, item) => sum + item.quantity,
         0
     );
 
     const totalPrice = cartItems.reduce(
-        (sum: any, item: any) => sum + item.price * item.quantity,
+        (sum, item) => sum + item.price * item.quantity,
         0
     );
 
     const cartHandler = async (id :  number, productId : number, operation : string) =>{
       if(operation == "increment"){
-        const newQuantity = cartItems.find((item : any) => item.id === id).quantity + 1;
-        const newCartItems = cartItems.map((item : any) => item.id === id ? { ...item, quantity: newQuantity } : item);
+        const newQuantity = cartItems.find((item ) => item.id === id).quantity + 1;
+        const newCartItems = cartItems.map((item ) => item.id === id ? { ...item, quantity: newQuantity } : item);
         setCartItems(newCartItems);
         await updateCart({ quantity: newQuantity, productId, userId });
       }
       else if(operation == "decrement"){
-        const newQuantity = cartItems.find((item : any) => item.id === id).quantity - 1;
+        const newQuantity = cartItems.find((item ) => item.id === id).quantity - 1;
         if(newQuantity == 0){
-          const newCartItems = cartItems.filter((item : any) => item.id !== id);
+          const newCartItems = cartItems.filter((item ) => item.id !== id);
           setCartItems(newCartItems);
           await deleteCart({ quantity: newQuantity, productId: id, userId });
         }
         else{
-          const newCartItems = cartItems.map((item : any) => item.id === id ? { ...item, quantity: newQuantity } : item);
+          const newCartItems = cartItems.map((item ) => item.id === id ? { ...item, quantity: newQuantity } : item);
           setCartItems(newCartItems);
           await updateCart({ quantity: newQuantity, productId, userId });
         }
       }
       else if(operation == "delete"){
-        const newCartItems = cartItems.filter((item : any) => item.id !== id);
+        const newCartItems = cartItems.filter((item ) => item.id !== id);
         setCartItems(newCartItems);
         await deleteCart({ quantity: 0, productId, userId });
       }
@@ -110,10 +107,10 @@ const Cart = () => {
             <SheetTitle>Your Cart</SheetTitle>
           </SheetHeader>
           <div className="mt-8 space-y-4">
-            {cartItems.map((item: any) => (
+            {cartItems.map((item) => (
               <div key={item.id} className="flex items-center space-x-4">
                 <div className="relative w-20 h-20 rounded-md overflow-hidden">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
                     className="object-cover"

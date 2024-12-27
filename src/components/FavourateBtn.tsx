@@ -20,14 +20,15 @@ const FavourateBtn = ({ productId }: { productId: number }) => {
                 setIsFavourate(isFavourate);
             }
         }
+        userFavourates();
     }, [userId, productId]);
 
     const favourateHandler = async () => {
         if (isFavourate) {
-            const res = await removeFavourate(productId, userId);
+            await removeFavourate(productId, userId);
             setIsFavourate(!isFavourate);
         } else {
-            const res = await addFavourate(productId, userId);
+            await addFavourate(productId, userId);
             setIsFavourate(!isFavourate);
         }
     }

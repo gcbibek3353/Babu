@@ -14,10 +14,9 @@ export const addFavourate = async (productId: number, userId: number) =>{
             message: "Successfully Added the Favourate",
             addedFavourate
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
         return {
-            error: error.message,
+            error: error,
             message: "Failed to add the favourate",
             success: false,
         }
@@ -37,10 +36,9 @@ export const removeFavourate = async (productId: number, userId: number) =>{
             message: "Successfully Removed the Favourate",
             removedFavourate
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
         return {
-            error: error.message,
+            error: error,
             message: "Failed to remove the favourate",
             success: false,
         }
@@ -57,10 +55,9 @@ export const getFavourates = async (userId: number) =>{
             message: "all favourates fetched successfully",
             favourates
         }
-    } catch (error: any) {
-        console.log(error.message);
+    } catch (error) {
         return {
-            error: error.message,
+            error: error,
             message: "Failed to get the favourates",
             success: false,
         }

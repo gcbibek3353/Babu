@@ -2,10 +2,11 @@
 import React from 'react'
 import { getAllProducts, getProductByCategory, getProductById } from '@/actions/product';
 import AddToCartBtn from '@/components/AddToCartBtn';
-import { Link, Share } from 'lucide-react';
+import { Share } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ProductCard';
 import FavourateBtn from '@/components/FavourateBtn';
+import Image from 'next/image';
 
 const page = async ({ params, }: { params: Promise<{ productId: string }> }) => {
     const productId = (await params).productId;
@@ -27,7 +28,7 @@ const page = async ({ params, }: { params: Promise<{ productId: string }> }) => 
                     <FavourateBtn productId={product?.id} />
                     </div>
                     <div className='p-5 rounded-md flex justify-center items-center'>
-                        <img src={product?.imageUrl as string} alt="productImage" className='rounded-md shadow-xl w-72 h-auto' />
+                        <Image src={product?.imageUrl as string} alt="productImage" className='rounded-md shadow-xl w-72 h-auto' />
                     </div>
                     <div className='w-1/2'>
                         <h2 className='text-2xl font-bold'>₹{product?.price}</h2>

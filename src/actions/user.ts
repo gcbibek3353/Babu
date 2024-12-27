@@ -34,8 +34,8 @@ export const addUser = async (userDetails : userDetailsParams)=>{
             success : true,
             newUser
         }
-    }catch (error : any) {
-        console.log(error.message);
+    }catch (error) {
+        console.log(error);
         return {
             message : "Failed to add the User",
             success : false,
@@ -54,8 +54,8 @@ export const updateUser = async(id:number, userDetails : userDetailsParams)=>{
             success : true,
             updatedUser
         }
-    } catch (error :any) {
-        console.log(error.message);
+    } catch (error) {
+        console.log(error);
         return {
             message : "Failed to add the User",
             success : false,
