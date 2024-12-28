@@ -36,6 +36,7 @@ export const addUser = async (userDetails : userDetailsParams)=>{
         }
     }catch (error) {
         return {
+            error : error,
             message : "Failed to add the User",
             success : false,
         }
