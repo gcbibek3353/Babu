@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 
 const CartBtn = () => {
-    const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
+    const [, setIsCartOpen] = useRecoilState(cartState);
     const [cartItemsNumber,setCartItemsNumber] = useState<number>(0);
     const session = useSession();
     const userId = session.data?.user?.id;

@@ -3,7 +3,6 @@ import { Trash } from "lucide-react"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -14,7 +13,7 @@ import { Button } from "../ui/button";
 import { deleteProduct } from "@/actions/product";
 import { toast } from "sonner";
 
-const deleteBtn = ({ id }: { id: number }) => {
+const DeleteBtn = ({ id }: { id: number }) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const deleteHandler = async ()=>{
@@ -47,4 +46,4 @@ const deleteBtn = ({ id }: { id: number }) => {
     )
 }
 
-export default deleteBtn
+export default DeleteBtn

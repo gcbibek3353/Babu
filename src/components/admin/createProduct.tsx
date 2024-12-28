@@ -13,14 +13,14 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
-import { ChevronDown, CircleUserRound, LogOut, User } from "lucide-react"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { ChevronDown} from "lucide-react"
 import { useState } from "react"
 import { createProductAction } from "@/actions/product"
 import { toast } from "sonner"
 
 
-const createProduct = () => {
+const CreateProduct = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const [productDetails, setproductDetails] = useState({
@@ -34,7 +34,7 @@ const createProduct = () => {
         quantity: "",
     });
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >) => {
         const { id, value } = e.target;
         // console.log(`id is ${id} and value is ${value}`);
 
@@ -142,7 +142,7 @@ const createProduct = () => {
                                     <DropdownMenuItem
                                         id="fruit"
                                         textValue={productDetails.category}
-                                        onClick={(e)=>{
+                                        onClick={()=>{
                                             setproductDetails((prevDetails) => ({
                                                 ...prevDetails,
                                                 ['category']: 'fruit',
@@ -154,7 +154,7 @@ const createProduct = () => {
                                     </DropdownMenuItem>
                                     <DropdownMenuItem 
                                     id="vegetables"
-                                    onClick={(e)=>{
+                                    onClick={()=>{
                                         setproductDetails((prevDetails) => ({
                                             ...prevDetails,
                                             ['category']: 'vegetable',
@@ -222,4 +222,4 @@ const createProduct = () => {
     )
 }
 
-export default createProduct
+export default CreateProduct

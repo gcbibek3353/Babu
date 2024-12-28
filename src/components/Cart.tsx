@@ -43,7 +43,7 @@ const initialCartItems = [
 
 const Cart = () => {
   const [isCartOpen, setIsCartOpen] = useRecoilState(cartState);
-  const [cartItems, setCartItems] = useState<any>(initialCartItems);
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
   const session = useSession();
   const userId = session.data?.user?.id;
@@ -63,10 +63,10 @@ const Cart = () => {
       fetchCartItems();   // This should update whenever user adds or removes from cart // i.e dependent on AddToCartBtn.tsx component
     },[userId])
 
-    const totalItems = cartItems.reduce(
-        (sum, item) => sum + item.quantity,
-        0
-    );
+    // const totalItems = cartItems.reduce(
+    //     (sum, item) => sum + item.quantity,
+    //     0
+    // );
 
     const totalPrice = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,

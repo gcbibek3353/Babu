@@ -1,4 +1,4 @@
-import { AlarmClock, Star } from "lucide-react";
+import { AlarmClock } from "lucide-react";
 import AddToCartBtn from "./AddToCartBtn";
 import Link from "next/link";
 import FavourateBtn from "./FavourateBtn";
@@ -21,6 +21,8 @@ const ProductCard = ({ product }: { product: ProductDetailsParams }) => {
             <FavourateBtn  productId={product.id} />
             <Link  href={`/products/${product.id}`} >
                 <img
+                    width={100}
+                    height={100}
                     src={product.imageUrl}
                     alt={product.name}
                     className="rounded-md mx-auto object-cover w-full h-48"

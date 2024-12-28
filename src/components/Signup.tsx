@@ -6,11 +6,9 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { addUser } from '@/actions/user';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 const Signup = () => {
-  const router = useRouter();
 
     const [userDetails, setUserDetails] = useState({
         name: "",
@@ -21,7 +19,7 @@ const Signup = () => {
         city: "",
     });
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         setUserDetails((prevDetails) => ({
             ...prevDetails,
@@ -31,12 +29,12 @@ const Signup = () => {
 
     
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // console.log("user Details: ", userDetails);
         const { name, email, password, phone, address, city } = userDetails;
         const phoneNumber = parseInt(phone);
-        const added :any= await addUser({
+        const added = await addUser({
           name,
           phone : phoneNumber,
           email,
@@ -45,7 +43,6 @@ const Signup = () => {
           address,
         });
         if(added){
-            // router.push('/');
             signIn();
             toast.success("Siggned Up successfully");
         }

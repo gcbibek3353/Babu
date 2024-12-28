@@ -75,7 +75,7 @@ export const getOrderById = async (id: number) => {
 }
 
 // don't use any type , use correct type
-export const updateOrderStatus = async (id: number, status : any) => {
+export const updateOrderStatus = async (id: number, status) => {
     try {
         const updatedOrder = await prisma.order.update({
             where : {id},

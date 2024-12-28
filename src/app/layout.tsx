@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Provieder from "./Provieder";
 import Cart from "@/components/Cart";
-import Navbar from "@/components/Navbar";
 import { getAllProducts } from "@/actions/product";
 
 const geistSans = localFont({
@@ -56,7 +55,6 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provieder>
-          {/* <Navbar products={res.products} /> */}
           <Cart />
           {children}
         </Provieder>

@@ -15,14 +15,14 @@ export const nextAuthConfig = {
         username: { label: "email", type: "email", placeholder: "Email" },
         password: { label: "Password", type: "password",placeholder:"********" }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const userWithEmail = await prisma.user.findUnique({
           where : {email : credentials?.username}
         })
         const isPasswordCorrect = await bcrypt.compare(credentials?.password as string,userWithEmail?.password as string);
 
         if(isPasswordCorrect){
-          const { password, ...newUser } = userWithEmail;
+          const {...newUser } = userWithEmail;
           const formattedUser = {
             ...newUser,
             id: newUser.id.toString(), // Convert id to a string
@@ -40,7 +40,7 @@ export const nextAuthConfig = {
   ],
 
   callbacks: {
-    async signIn({ user, account, profile } : any) {
+    async signIn({ user, profile }) {
       // Check if user exists in your database
       let existingUser = await prisma.user.findUnique({
         where: { email: user.email },
@@ -63,12 +63,12 @@ export const nextAuthConfig = {
 
       return true; // Allow sign-in
     },
-    async session({ session, token } : any) {
+    async session({ session, token }) {
       // Attach the user ID to the session
       session.user.id = token.id;
       return session;
     },
-    async jwt({ token, user } : any) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id; // Attach userId from database to the token
       }

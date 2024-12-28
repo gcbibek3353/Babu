@@ -9,7 +9,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
 import { ChevronDown, Pencil } from "lucide-react"
 import { Button } from "../ui/button"
 import { Label } from "../ui/label"
@@ -17,7 +17,7 @@ import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
-const editButton = ({ id }: { id: number }) => {
+const EditButton = ({ id }: { id: number }) => {
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     useEffect(()=>{
@@ -51,7 +51,7 @@ const editButton = ({ id }: { id: number }) => {
     }
   
 
-    const handleChange = (e: any) => {
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement> ) => {
         const { id, value } = e.target;
         // console.log(`id is ${id} and value is ${value}`);
 
@@ -162,7 +162,7 @@ const editButton = ({ id }: { id: number }) => {
                                         <DropdownMenuItem
                                             id="fruit"
                                             textValue={productDetails.category}
-                                            onClick={(e) => {
+                                            onClick={() => {
                                                 setproductDetails((prevDetails) => ({
                                                     ...prevDetails,
                                                     ['category']: 'fruit',
@@ -174,7 +174,7 @@ const editButton = ({ id }: { id: number }) => {
                                         </DropdownMenuItem>
                                         <DropdownMenuItem
                                             id="vegetables"
-                                            onClick={(e) => {
+                                            onClick={() => {
                                                 setproductDetails((prevDetails) => ({
                                                     ...prevDetails,
                                                     ['category']: 'vegetable',
@@ -244,4 +244,4 @@ const editButton = ({ id }: { id: number }) => {
     )
 }
 
-export default editButton
+export default EditButton

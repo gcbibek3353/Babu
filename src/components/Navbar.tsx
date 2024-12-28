@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import logo from '@/images/logo.jpg'
 import Link from 'next/link';
-import Image from 'next/image';
 import { ChevronDown,Search} from 'lucide-react';
 import { Input } from './ui/input';
 import LoginBtn from './LoginBtn';
@@ -11,11 +10,11 @@ import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { useSession } from 'next-auth/react';
 
-const Navbar = ({ products }: any) => {
+const Navbar = ({ products }) => {
     const router = useRouter();
     const session = useSession();
     // console.log(session);
-
+    
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
@@ -23,14 +22,14 @@ const Navbar = ({ products }: any) => {
     const [placeholder, setPlaceholder] = useState("Search");
 
     useEffect(() => {
-        const uniqueCategories: any = Array.from(new Set(products.map((product: any) => product.category)));
+        const uniqueCategories = Array.from(new Set(products.map((product) => product.category)));
         setCategories(uniqueCategories);
     }, [products]);
 
     useEffect(() => {
         if (searchTerm.length > 0) {
             setIsSearching(true);
-            const results = products.filter((product: any) =>
+            const results = products.filter((product) =>
                 product.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setSearchResults(results.slice(0, 5));
@@ -60,8 +59,8 @@ const Navbar = ({ products }: any) => {
                 {/* left */}
                 <div className="flex items-center space-x-6">
                     <Link href="/" className="flex-shrink-0">
-                        <Image
-                            src={logo}
+                        <img
+                            src={logo.src}
                             alt="logo"
                             width={40}
                             height={40}
@@ -120,7 +119,7 @@ const Navbar = ({ products }: any) => {
                             {isSearching && (
                                 <div className="absolute mt-2 w-full bg-white rounded-md shadow-lg z-10">
                                     {searchResults.length > 0 ? (
-                                        searchResults.map((product: any) => (
+                                        searchResults.map((product) => (
                                             <Link
                                                 key={product.id}
                                                 href={`/products/${product.id}`}

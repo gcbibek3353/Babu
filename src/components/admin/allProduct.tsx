@@ -1,19 +1,20 @@
 import { getAllProducts } from '@/actions/product';
 import EditButton from './editButton';
 import DeleteBtn from './deleteBtn';
+import Image from 'next/image';
 
 const allProduct = async () => {
   const res = await getAllProducts();
   if (!res || !res.products) return <div>Failed to get Products</div>
 
-  const uniqueCategories: any = Array.from(new Set(res.products.map((product: any) => product.category)));
+  const uniqueCategories = Array.from(new Set(res.products.map((product) => product.category)));
 
 
   return (
     <div>
       {/* Categories create similar component as navbar where all unique categories will be placed */}
       {
-        uniqueCategories.map((category : any, index : any) => (
+        uniqueCategories.map((category , index ) => (
           <p
             key={index}
             className="text-sm font-medium text-gray-600 bg-gray-200 px-3 py-1 rounded-md inline-block mr-2 mb-2 cursor-pointer"
@@ -29,7 +30,7 @@ const allProduct = async () => {
       key={product.id} 
       className="flex items-center gap-4 bg-white shadow-md rounded-lg p-4 mb-4"
     >
-      <img 
+      <Image 
         src={product.imageUrl as string} 
         alt={product.name} 
         className="w-16 h-16 object-cover rounded-md"
