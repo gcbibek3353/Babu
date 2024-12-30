@@ -8,6 +8,7 @@ import { addToCart, deleteCart, getCartQuantity, updateCart } from "@/actions/ca
 import { useSession } from "next-auth/react";
 
 const AddToCartBtn = ({ productId }: { productId: number }) => {
+    // Add to cart Btn
     const [quantity, setQuantity] = useState(0);
     const session = useSession();
     const userId = session.status === "authenticated" ? session.data?.user.id : null;

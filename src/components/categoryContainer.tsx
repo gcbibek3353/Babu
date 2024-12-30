@@ -3,10 +3,7 @@ import ProductCard from "./ProductCard";
 
 const categoryContainer = async ({category}:{category : string}) => {
   const res = await getProductByCategory(category);
-  // console.log('products are');
-  // console.log(res.products);
-  
-  
+
   if(!res.success || !res.products?.length ) return <div>Category wise data not found </div>
   
   return (

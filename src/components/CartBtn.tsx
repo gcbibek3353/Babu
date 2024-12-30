@@ -16,12 +16,10 @@ const CartBtn = () => {
     const userId = session.data?.user?.id;
 
     const fetchCartItems = async ()=>{
-        //   console.log(userId);
           const res = await getCartItems(userId); 
           if(!res.success){
             return;
           }
-        //   console.log(res.cartItems);
           setCartItemsNumber(res.cartItems?.length);
         }
         
