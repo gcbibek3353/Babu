@@ -56,7 +56,6 @@ const Navbar = ({ products }) => {
         <nav className="bg-white shadow sticky top-0 z-50">
             {/* for medium and large devices  */}
             <div className="container mx-auto px-4 flex justify-between items-center py-4">
-                {/* left */}
                 <div className="flex items-center space-x-6">
                     <Link href="/" className="flex-shrink-0">
                         <img
@@ -67,7 +66,6 @@ const Navbar = ({ products }) => {
                             className="rounded-full"
                         />
                     </Link>
-                    {/* <span onClick={()=>setTestState(testState + 1)}>{testState}</span> */}
                     <div className="relative group">
                         <div
                             
@@ -99,7 +97,6 @@ const Navbar = ({ products }) => {
                     </div>
                 </div>
 
-                {/* mid */}
                 <div className="hidden md:block">
                     <div className="flex items-center">
                         <form onSubmit={(e: React.FormEvent) => { e.preventDefault() }} className="mr-4 relative">
@@ -154,7 +151,6 @@ const Navbar = ({ products }) => {
                     </div>
                 </div>
 
-                {/* right */}
                 <div className="flex items-center space-x-4">
                     <LoginBtn />
                     {
