@@ -1,0 +1,53 @@
+{
+    "products" : [
+        {
+            "name" : "Banana",
+              "description" : "Banana is great",
+              "price" : 60,
+              "imageUrl" : "https://i.ibb.co/g4t9BBG/13649b87-e045-46ee-a609-ec722c9b2a41.webp",
+              "category" : "fruit",
+              "inStock" : 1
+        },
+        {
+            "name" : "Apple",
+              "description" : "Apple is great",
+              "price" : 600,
+              "imageUrl" : "https://i.ibb.co/P90vX9s/968bf38b-8a82-41c3-b1c5-3ef4d19e5ac1.webp",
+              "category" : "fruit",
+              "inStock" : 1
+        },
+        {
+            "name" : "coconut",
+              "description" : "Banana is great",
+              "price" : 50,
+              "imageUrl" : "https://i.ibb.co/6RhsXK1/8d7ce258-8e61-4fd6-8795-cfc159d8cf40.webp",
+              "category" : "fruit",
+              "inStock" : 1
+        },
+        {
+            "name" : "Lemon",
+              "description" : "Banana is great",
+              "price" : 600,
+              "imageUrl" : "https://i.ibb.co/wRY01mb/79827d6a-ea85-4ec4-b597-8f15363b71ec.webp",
+              "category" : "fruit",
+              "inStock" : 1
+        },
+        {
+            "name" : "coca cola",
+              "description" : "Enjoy the drink",
+              "price" : 60,
+              "imageUrl" : "https://i.ibb.co/mCpHFG5/fec89b7b-8a13-477e-b750-7a52e82828a0.jpg",
+              "category" : "cold_Drink",
+              "inStock" : 1
+        },
+        {
+            "name" : "Cauli Flower",
+              "description" : "Have some green Vegetables",
+              "price" : 30,
+              "imageUrl" : "https://i.ibb.co/k5kdwpP/87ba5567-09fd-4e76-9a4e-0dc1d7fdd341.webp",
+              "category" : "vegetable",
+              "inStock" : 0
+        }
+        
+    ]
+}
