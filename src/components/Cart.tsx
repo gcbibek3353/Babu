@@ -113,6 +113,8 @@ const Cart = () => {
                   <Image
                     src={item.image}
                     alt={item.name}
+                    width={32}
+                    height={32}
                     className="object-cover"
                   />
                 </div>

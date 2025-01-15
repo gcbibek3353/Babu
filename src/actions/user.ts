@@ -13,6 +13,7 @@ interface userDetailsParams{
 }
 
 export const addUser = async (userDetails : userDetailsParams)=>{
+    console.log(userDetails);
     const {name,phone,email,password,city,address} = userDetails;
     try {
         const existingUserWithEmail = await prisma.user.findUnique({

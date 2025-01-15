@@ -33,6 +33,8 @@ const allProduct = async () => {
       <Image 
         src={product.imageUrl as string} 
         alt={product.name} 
+        height={32}
+        width={32}
         className="w-16 h-16 object-cover rounded-md"
       />
       <div className="flex-grow">
